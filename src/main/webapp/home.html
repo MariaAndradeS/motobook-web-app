@@ -13,6 +13,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     
     <style>
+
+.book {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+    width: 140px;
+    height: 170px;
+    border: solid 12px #429398;
+    transition: all 0.5s;
+  }
+
+  .book:hover {
+    transform: scale(1.1);
+  }
+
+
+  .flex1 {
+  display: flex;
+  flex-grow: 1;
+  background-color: #E4E2D9;
+}
+
+.flexBook {
+  display: flex;
+}
+
+.fl{
+  flex:1;
+}
         body {
             margin: 0; 
             padding: 0;
@@ -148,6 +180,11 @@
             background-color: #E4E2D9;
         }
 
+        .books, .library {
+            padding: 10px;
+            
+        }
+
         .main-lateral {
             background-color: #a08f7c;
             width: 20%;
@@ -171,10 +208,29 @@
             color: #4B3C2F;
         }
 
+        .divisoria {
+            border: none;
+            border-top: 6px solid #4B3C2F;
+            margin: 10px 0;
+        }
+
         footer {
             background-color: #886749;
             color:#E4E2D9;
         }
+
+        h5 {
+            color:#E4E2D9;
+        }
+
+        .nav-item mb-2 {
+            color: #4b3c2f;
+        }
+
+        #newsletter1 {
+            background-color: #E4E2D9; /* Substitua #FF0000 pela cor desejada em formato hexadecimal, RGB ou nome da cor. */
+        }
+        
         
 
     </style>
@@ -207,10 +263,8 @@
             <p style="font-size: 20px;">Bem-vindo</p>
         </div>
         <div class="flex-shrink-0 p-3" style="width: 280px; background-color:#429398">
-            <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
               <svg class="bi pe-none me-2" width="10" height="14"><use xlink:href="#bootstrap"/></svg>
               <span class="fs-5 fw-semibold" style="color: #E4E2D9; font-size: 30px">Gêneros</span>
-            </a>
             <ul class="list-unstyled ps-0">
               <li class="mb-1">
                 <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
@@ -413,8 +467,40 @@
     </div>
 
     <main>
+  
         <div class="main">
-            a
+            <div class="library">
+                a
+            </div>
+            <hr class="divisoria">
+            <div class="flex1">
+              <div class="flexBook">
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book1.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book2.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book3.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book4.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book5.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book6.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book7.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book5.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book6.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book7.jpg"></div>
+            </div>
+          </div>
+            <div class="flex1">
+              <div class="flexBook">
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book1.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book2.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book3.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book4.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book5.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book6.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book7.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book5.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book6.jpg"></div>
+              <div class="fl" data-tooltip="Romance, Ficção" data-flow="bottom"><img class="book" src="book7.jpg"></div>
+            </div>
+          </div>
         </div>
         <div class="main-lateral">
             <div class="carrinho">
@@ -426,11 +512,52 @@
         </div>
     </main>
 
-    <footer>
-        <div>
-            a
-        </div>
-    </footer>
+    <div class="container" >
+        <footer class="py-5">
+          <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Motobook</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Sobre Nós</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Políticas de Privacidade</a></li>
+                <li class="nav-item mb-2"><a href="termos.html" class="nav-link p-0 text-muted">Termos de Serviço</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Perguntas Frequentes</a></li>
+                <li class="nav-item mb-2"><a href="contato.html" class="nav-link p-0 text-muted">Contato</a></li>
+              </ul>
+            </div>
+      
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Configurações</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="home.html" class="nav-link p-0 text-muted">Home</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Ajuda</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Acessibilidade</a></li>
+              </ul>
+            </div>
+      
+            <div class="col-md-5 offset-md-1 mb-3">
+              <form>
+                <h5>Cadastre-se e receba nossa newsletter</h5>
+                <p style="color: #4B3C2F;">Resumo mensal do que há de novo e interessante sobre nós</p>
+                <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                  <label for="newsletter1" class="visually-hidden">Email address</label>
+                  <input id="newsletter1" type="email" class="form-control" placeholder="Email address">
+                  <button class="btn btn-primary" style="background-color: #4B3C2F; color: #E4E2D9;" type="button">Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      
+          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>&copy; 2023 Motobook, Inc. Todos direitos reservados.</p>
+            <ul class="list-unstyled d-flex">
+              <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+              <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+              <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+            </ul>
+          </div>
+        </footer>
+      </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script>
         

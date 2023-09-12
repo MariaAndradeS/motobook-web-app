@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Motobook</title>
+    <link rel="icon" href="imagens/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="imagens/favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+    <style>
+        body {
+            margin: 0; 
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            font-family: 'Ubuntu', sans-serif;        }
+
+        header {
+            background-color: #4B3C2F;
+            padding: 10px; /* Espaçamento interno no cabeçalho */
+            display: flex; /* Usar flexbox para centralizar elementos */
+            justify-content: space-between; /* Espaçamento entre elementos */
+            align-items: center; /* Centralizar verticalmente */
+        }
+
+        .calendario i {
+            font-size: 28px; /* Ajuste o tamanho do ícone conforme necessário */
+            padding-left: 40px;
+            padding-right: 20px;
+        }
+
+        .calendario a i {
+            color: #429398 !important;
+        }
+
+        .profile i {
+            font-size: 28px; /* Ajuste o tamanho do ícone conforme necessário */
+            padding-right: 10px;
+        }
+
+        .profile a i {
+            color: #429398 !important;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            color: #E4E2D9;
+            cursor: pointer;
+            margin-left: 10px;
+            z-index: 1;
+        }
+
+        .caixa-de-busca {
+            display: flex; /* Usar flexbox para alinhar elementos internos */
+            align-items: center; /* Centralizar verticalmente */
+            background-color: #E4E2D9; /* Cor de fundo da caixa de busca */
+            border-radius: 5px; /* Borda arredondada */
+            padding: 5px; /* Espaçamento interno na caixa de busca */
+            width: 50%; /* Definir a largura da caixa de busca para ocupar metade do header */
+            margin: 0 auto; /* Centralizar horizontalmente */
+        }
+
+        .lupa {
+            margin-right: 5px; /* Espaçamento à direita da imagem */
+        }
+
+        .campo-de-busca {
+            border: none; /* Remover a borda padrão do campo de busca */
+            outline: none; /* Remover o contorno quando o campo está focado */
+            background-color: transparent; /* Remover a cor de fundo padrão */
+            flex-grow: 1; /* Faz o campo de busca ocupar todo o espaço disponível */
+        }
+
+        .texto-buscar {
+            background-color: #E4E2D9; /* Cor de fundo para o texto "Buscar" */
+            padding: 3px 5px; /* Espaçamento interno no texto "Buscar" */
+            border-radius: 5px; /* Borda arredondada para o texto "Buscar" */
+        }
+
+        /* Estilos do Menu Lateral */
+        .menu {
+            position: fixed;
+            left: -250px; /* Inicia oculto */
+            top: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #4B3C2F;
+            transition: left 0.3s;
+            overflow-y: auto;
+            padding-top: 60px;
+            color: #E4E2D9;
+        }
+
+        .menu-header {
+            text-align: center;
+            padding: 10px;
+            background-color: #4B3C2F; /* Cor de fundo para a parte superior do menu */
+        }
+
+        .user-icon {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .genres-header {
+            text-align: center;
+            padding: 10px;
+            background-color: #429398; /* Cor de fundo para a parte debaixo do menu */
+            
+        }
+
+        .genre {
+            text-align: center;
+            padding: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #429398
+        }
+
+        .genre .arrow-icon {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+
+        .genre-list {
+            display: none;
+            flex-direction: column;
+        }
+
+        .genre.active .genre-list {
+            display: flex;
+        }
+
+        main {
+            display: flex;
+            height: 100%;       
+        }
+
+        .main {
+            flex-grow: 1;
+            background-color: #E4E2D9;
+        }
+
+        .main-lateral {
+            background-color: #a08f7c;
+            width: 20%;
+        }
+
+        .carrinho {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza horizontalmente */
+            justify-content: center; /* Centraliza verticalmente */
+            padding: 20px;
+        }
+        
+        .carrinho i {
+            font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+        }
+        
+        .texto-carrinho {
+            text-align: center;
+            margin-top: 10px;
+            color: #4B3C2F;
+        }
+
+        footer {
+            background-color: #886749;
+            color:#E4E2D9;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
+        <div class="caixa-de-busca">
+            <i class="fas fa-search lupa" style="color: #4B3C2F;"></i>
+            <span class="texto-buscar"></span>
+            <input type="text" class="campo-de-busca" placeholder="Buscar" onkeydown="enviarBusca(event)">
+        </div>
+
+        <div class="calendario">
+            <a href="calendario.html">
+                <i class="fas fa-calendar-days"></i>
+            </a>
+        </div>
+
+        <div class="profile">
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="menu" id="menu">
+        <div class="menu-header">
+            <i class="fas fa-user user-icon"></i>
+            <p style="font-size: 20px;">Bem-vindo</p>
+        </div>
+        <div class="flex-shrink-0 p-3" style="width: 280px; background-color:#429398">
+            <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+              <svg class="bi pe-none me-2" width="10" height="14"><use xlink:href="#bootstrap"/></svg>
+              <span class="fs-5 fw-semibold" style="color: #E4E2D9; font-size: 30px">Gêneros</span>
+            </a>
+            <ul class="list-unstyled ps-0">
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Romance
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Mistério
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Ficção Científica
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Poema
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Contos
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Biografias
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Autoajuda
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Infantis
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Espiritualidade e Religião
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Clássicos
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Drama
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Fantasia
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Crônicas
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="mb-1">
+                <i class="fas fa-caret-right arrow-icon" onclick="toggleGenreList(this)"></i><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"  style="color:#E4E2D9; background-color:#429398">
+                  Acadêmicos
+                </button> 
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                    <li><span>Livro</span></li>
+                  </ul>
+                </div>
+              </li>
+              
+              <li class="border-top my-3"></li>
+              <li class="mb-1">
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                  Sair
+                </button>
+                <div class="collapse" id="account-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Profile</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Settings</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Sign out</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </div>
+
+    <main>
+        <div class="main">
+            a
+        </div>
+        <div class="main-lateral">
+            <div class="carrinho">
+                <i class="fa-solid fa-cart-shopping" style="color: #4b3c2f;"></i>
+                <div class="texto-carrinho">
+                    <span>Carrinho</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            a
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script>
+        
+        let menuOpen = false;
+
+        function enviarBusca(event) {
+            if (event.key === 'Enter') {
+                document.querySelector('.campo-de-busca').value = '';
+                
+                // Impedir o comportamento padrão do Enter
+                event.preventDefault();
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menuOpen) {
+                menu.style.left = '-250px';
+            } else {
+                menu.style.left = '0';
+            }
+            menuOpen = !menuOpen;
+        }
+
+        function toggleGenres() {
+            const genreList = document.querySelector('.genre-list');
+            const arrowIcon = document.querySelector('.genres-header .arrow-icon');
+            genreList.classList.toggle('active');
+            arrowIcon.classList.toggle('fa-caret-down');
+        }
+
+        function toggleGenreList(icon) {
+            const genreList = icon.parentElement.querySelector('.genre-list');
+            icon.classList.toggle('fa-caret-down');
+            genreList.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

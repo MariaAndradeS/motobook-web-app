@@ -184,44 +184,47 @@
     <main>
         <h1>CADASTRO</h1>
         <div class="container-panel">
-            <form action="" class="container">
+            <form method="post" action="cadastro" class="container">
                 <div class="card-div">
                     <label for="nomeCompleto" class="label-input">Nome Completo</label>
-                    <input type="text" id="nomeCompleto" class="input" placeholder="Digite o seu nome completo"  required>
+                    <input name="nomeCompleto" type="text" id="nomeCompleto" class="input" placeholder="Digite o seu nome completo"  required>
                     
                     <label for="email" class="label-input">Email</label>
-                    <input type="text" id="email" class="input" placeholder="Digite o seu email" required>
+                    <input name="email" type="text" id="email" class="input" placeholder="Digite o seu email" required>
 
                     <label for="senha" class="label-input">Senha</label>
-                    <input type="password" id="senha" class="input" placeholder="Digite o sua senha"  required>
+                    <input name="senha" type="password" id="senha" class="input" placeholder="Digite o sua senha"  required>
 
                     <label for="telefone" class="label-input">Telefone</label>
-                    <input type="text" id="telefone" class="input" placeholder="Digite o seu telefone" required>
+                    <input name="telefone" type="text" id="telefone" class="input" placeholder="Digite o seu telefone" required>
 
                     <label for="cpf" class="label-input">CPF</label>
-                    <input type="text" id="cpf" class="input" placeholder="Digite o seu CPF" required>
+                    <input name="cpf" type="text" id="cpf" class="input" placeholder="Digite o seu CPF" required>
                 </div>
 
                 <div class="card-div">
                     <label for="cidade" class="label-input">Cidade</label>
-                    <input type="text" id="cidade" class="input" placeholder="Digite a sua Cidade" required>
+                    <input name="cidade" type="text" id="cidade" class="input" placeholder="Digite a sua Cidade" required>
 
                     <label for="estado" class="label-input">Estado</label>
-                    <input type="text" id="estado" class="input" placeholder="Digite o seu Estado" required>
+                    <input name="estado" type="text" id="estado" class="input" placeholder="Digite o seu Estado" required>
 
                     <label for="pais" class="label-input">País</label>
-                    <input type="text" id="pais" class="input" placeholder="Digite o seu País" required>
+                    <input name="pais" type="text" id="pais" class="input" placeholder="Digite o seu País" required>
 
                     <label for="complemento" class="label-input">Complemento</label>
-                    <input type="text" id="complemento" class="input" placeholder="Digite o complemento" required>
+                    <input name="complemento" type="text" id="complemento" class="input" placeholder="Exemplo: Apto, Bloco..." required>
 
                     <label for="cep" class="label-input">CEP</label>
-                    <input type="text" id="cep" class="input" placeholder="Digite o seu CEP" required>
+                    <input name="cep" type="text" id="cep" class="input" placeholder="Digite o seu CEP" required>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <button type="submit" id="enviar" class="submit-button">ENVIAR</button>
                 </div>
             </form>
         </div>
 
-        <button type="submit" id="enviar" class="submit-button">ENVIAR</button>
+
     </main>
 
     <script>
